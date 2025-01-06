@@ -80,26 +80,33 @@
     ];
 
     extraConfig = ''
-      # enable mouse
-      set-option -g mouse on
-
-      # unbind old splits
-      unbind %
-      unbind '"'
-
-      # simple split-pane commands
-      bind \\ split-window -h -c '#{pane_current_path}'
-      bind - split-window -v -c '#{pane_current_path}'
-      bind c split-window -c '#{pane_current_path}'
-
-      # fullscreen
-      bind -r m resize-pane -Z
+      ${builtins.readFile ./.tmux.conf}
     '';
   };
 
-  programs.neovim = {
+  programs.neovim = let
+    toLua = str: "lua << EOF\n${str}\nEOF\n";
+    toLuaFile = file: toLua (builtins.readFile file);
+  in {
     enable = true;
     defaultEditor = true;
+
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+
+    plugins = with pkgs; [
+      # useful
+      {
+        plugin = vimPlugins.which-key-nvim;
+        config = toLuaFile ./nvim/plugins/which_key.lua;
+      }
+    ];
+
+    extraLuaConfig = ''
+      ${builtins.readFile ./nvim/options.lua}
+      ${builtins.readFile ./nvim/keymaps.lua}
+    '';
   };
 
   programs.helix = {
@@ -108,16 +115,16 @@
     settings = {
       editor.cursor-shape = {
         normal = "block";
-	insert = "bar";
-	select = "underline";
+        insert = "bar";
+        select = "underline";
       };
     };
 
     languages.language = [
       {
         name = "nix";
-	auto-format = true;
-	formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
+        auto-format = true;
+        formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
       }
     ];
   };
