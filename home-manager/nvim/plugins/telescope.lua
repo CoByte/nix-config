@@ -1,12 +1,15 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local themes = require("telescope.themes")
-
--- local mappings = require("cobyte.core.keymaps").telescope
+local wk = require("which-key")
 
 telescope.setup({
 	defaults = {
-		-- mappings = mappings(actions),
+		mappings = {
+			["<C-k>"] = actions.move_selection_previous,
+			["<C-j>"] = actions.move_selection_next,
+			["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+		},
 	},
 	extensions = {
 		fzf = {

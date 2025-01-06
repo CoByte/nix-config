@@ -1,5 +1,5 @@
 local wk = require("which-key")
--- local luasnip = require("luasnip")
+local luasnip = require("luasnip")
 
 -- set leader key
 vim.g.mapleader = " "
@@ -28,17 +28,17 @@ keymap.set("n", "<S-h>", ":BufferLineCyclePrev<CR>")
 keymap.set("n", "<S-l>", ":BufferLineCycleNext<CR>")
 
 -- luasnip
--- keymap.set({ "i", "s" }, "<C-l>", function()
--- 	if luasnip.expand_or_jumpable() then
--- 		luasnip.expand_or_jump()
--- 	end
--- end, { silent = true })
---
--- keymap.set({ "i", "s" }, "<C-h>", function()
--- 	if luasnip.jumpable(-1) then
--- 		luasnip.jump(-1)
--- 	end
--- end, { silent = true })
+keymap.set({ "i", "s" }, "<C-l>", function()
+	if luasnip.expand_or_jumpable() then
+		luasnip.expand_or_jump()
+	end
+end, { silent = true })
+
+keymap.set({ "i", "s" }, "<C-h>", function()
+	if luasnip.jumpable(-1) then
+		luasnip.jump(-1)
+	end
+end, { silent = true })
 
 -- top level binds
 wk.add({
@@ -86,68 +86,3 @@ wk.add({
 wk.add({
 	{ "v", hidden = true },
 })
-
--- Sets up LSP keybinds
-function output.on_lsp_attach(client, buffer)
-	-- top level binds
-	wk.add({
-		{ "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", desc = "Diagnose file" },
-		{ "<leader>d", vim.diagnostic.open_float, desc = "Diagnose line" },
-	})
-
-	-- LSP
-	wk.add({
-		{ "<leader>l", group = "LSP" },
-		{ "<leader>lR", "<cmd>Telescope lsp_references<CR>", desc = "References" },
-		{ "<leader>la", vim.lsp.buf.code_action, desc = "Code action" },
-		{ "<leader>lD", vim.lsp.buf.declaration, desc = "Declaration" },
-		{ "<leader>ld", "<cmd>Telescope lsp_definitions<CR>", desc = "Definition" },
-		{ "<leader>lh", vim.lsp.buf.hover, desc = "Hover" },
-		{ "<leader>li", "<cmd>Telescope lsp_inplementations<CR>", desc = "Implementations" },
-		{ "<leader>lr", ":IncRename ", desc = "Smart rename" },
-		{ "<leader>ls", vim.lsp.buf.signature_help, desc = "Signature info" },
-		{ "<leader>lt", "<cmd>Telescope lsp_type_definitions<CR>", desc = "Type definition" },
-	})
-
-	keymap.set("n", "[d", vim.diagnostic.goto_prev)
-	keymap.set("n", "]d", vim.diagnostic.goto_next)
-	keymap.set("n", "K", vim.lsp.buf.hover)
-end
-
--- Sets up Typst-specific keybinds (only when a typst file is open)
-function output.on_typst_attach(client, buffer)
-	wk.add({
-		{ "<leader>p", group = "Typst Preview" },
-		{ "<leader>pp", "<cmd>TypstPreviewToggle<CR>", desc = "Toggle preview" },
-		{ "<leader>pc", "<cmd>TypstPreviewFollowCursorToggle<CR>", desc = "Toggle cursor follow" },
-		{ "<leader>pj", "<cmd>TypstPreviewSyncCursor<CR>", desc = "Sync cursor" },
-	})
-end
-
--- Returns and configures autocompletion keybinds
--- `cmp` is the nvim-cmp package
-function output.cmp(cmp)
-	return cmp.mapping.preset.insert({
-		["<C-k>"] = cmp.mapping.select_prev_item(),
-		["<C-j>"] = cmp.mapping.select_next_item(),
-		["<C-b>"] = cmp.mapping.scroll_docs(-4),
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		["<C-Space>"] = cmp.mapping.complete(),
-		["<C-e>"] = cmp.mapping.abort(),
-		["<CR>"] = cmp.mapping.confirm({ select = false }),
-	})
-end
-
--- Returns telescope keybinds
--- actions is telescope.actions
-function output.telescope(actions)
-	return {
-		i = {
-			["<C-k>"] = actions.move_selection_previous,
-			["<C-j>"] = actions.move_selection_next,
-			["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-		},
-	}
-end
-
--- return output

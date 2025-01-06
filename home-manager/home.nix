@@ -104,7 +104,7 @@
       # useful
       {
         plugin = vimPlugins.which-key-nvim;
-        config = toLuaFile ./nvim/plugins/which_key.lua;
+        config = minimalConfig "which-key";
       }
       {
         plugin = vimPlugins.nvim-surround;
@@ -132,6 +132,8 @@
       }
 
       # styling
+      vimPlugins.nvim-web-devicons
+      vimPlugins.bufferline-nvim
       {
         plugin = vimPlugins.lualine-nvim;
         config = toLuaFile ./nvim/plugins/lualine.lua;
@@ -220,6 +222,7 @@
     toybox
     grc
     nix-prefetch-github
+    ripgrep
 
     # language servers
     nil
