@@ -7,10 +7,10 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 null_ls.setup({
 	sources = {
-		formatting.prettier, -- javascript
+		-- formatting.prettier, -- javascript
 		formatting.stylua, -- lua
 		formatting.black, -- python
-		diagnostics.eslint_d, -- javascript
+		-- diagnostics.eslint_d, -- javascript
 		-- diagnostics.cpplint, -- c++
 	},
 	-- configure format on save

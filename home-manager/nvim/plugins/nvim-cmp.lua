@@ -2,7 +2,7 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 
-local mapping = require("cobyte.core.keymaps").cmp
+-- local mapping = require("cobyte.core.keymaps").cmp
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
@@ -16,7 +16,7 @@ cmp.setup({
 			luasnip.lsp_expand(args.body)
 		end,
 	},
-	mapping = mapping(cmp),
+	-- mapping = mapping(cmp),
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },

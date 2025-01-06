@@ -77,6 +77,7 @@
 
     plugins = with pkgs; [
       tmuxPlugins.better-mouse-mode
+      tmuxPlugins.vim-tmux-navigator
     ];
 
     extraConfig = ''
@@ -87,6 +88,7 @@
   programs.neovim = let
     toLua = str: "lua << EOF\n${str}\nEOF\n";
     toLuaFile = file: toLua (builtins.readFile file);
+    minimalConfig = name: toLua "require(\"${name}\").setup()";
   in {
     enable = true;
     defaultEditor = true;
@@ -96,10 +98,87 @@
     vimdiffAlias = true;
 
     plugins = with pkgs; [
+      # random dependencies
+      vimPlugins.plenary-nvim
+
       # useful
       {
         plugin = vimPlugins.which-key-nvim;
         config = toLuaFile ./nvim/plugins/which_key.lua;
+      }
+      {
+        plugin = vimPlugins.nvim-surround;
+        config = minimalConfig "nvim-surround";
+      }
+      {
+        plugin = vimPlugins.comment-nvim;
+        config = minimalConfig "Comment";
+      }
+      {
+        plugin = vimPlugins.inc-rename-nvim;
+        config = minimalConfig "inc_rename";
+      }
+      {
+        plugin = vimPlugins.nvim-autopairs;
+        config = toLuaFile ./nvim/plugins/autopairs.lua;
+      }
+      {
+        plugin = vimPlugins.gitsigns-nvim;
+        config = minimalConfig "gitsigns";
+      }
+      {
+        plugin = vimPlugins.neodev-nvim;
+        config = toLuaFile ./nvim/plugins/neodev.lua;
+      }
+
+      # styling
+      {
+        plugin = vimPlugins.lualine-nvim;
+        config = toLuaFile ./nvim/plugins/lualine.lua;
+      }
+
+      # treesitter
+      # do treesitter later
+
+      # fuzzy finding
+      vimPlugins.telescope-fzf-native-nvim
+      vimPlugins.telescope-ui-select-nvim
+      {
+        plugin = vimPlugins.telescope-nvim;
+        config = toLuaFile ./nvim/plugins/telescope.lua;
+      }
+
+      # tabs
+      vimPlugins.vim-tmux-navigator
+
+      # autocompletion
+      vimPlugins.cmp-buffer
+      vimPlugins.cmp-path
+      {
+        plugin = vimPlugins.nvim-cmp;
+        config = toLuaFile ./nvim/plugins/nvim-cmp.lua;
+      }
+
+      # snippets
+      vimPlugins.cmp_luasnip
+      vimPlugins.friendly-snippets
+      {
+        plugin = vimPlugins.luasnip;
+        config = toLuaFile ./nvim/plugins/nvim-cmp.lua;
+      }
+
+      # lsp stuff
+      vimPlugins.cmp-nvim-lsp
+      vimPlugins.lspkind-nvim
+      {
+        plugin = vimPlugins.nvim-lspconfig;
+        config = toLuaFile ./nvim/plugins/lsp/lspconfig.lua;
+      }
+
+      # formatting & linting
+      {
+        plugin = vimPlugins.null-ls-nvim;
+        config = toLuaFile ./nvim/plugins/lsp/null-ls.lua;
       }
     ];
 
@@ -134,13 +213,25 @@
     spotify
     discord
     obsidian
+    gnome-tweaks
 
     # random garbage
     neo-cowsay
     toybox
-    gnome-tweaks
     grc
     nix-prefetch-github
+
+    # language servers
+    nil
+    rust-analyzer
+    lua-language-server
+    libclang
+    typst-lsp
+    ruby-lsp
+
+    # formatters/linters
+    stylua
+    black
   ];
 
   # Enable home-manager and git
