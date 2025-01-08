@@ -18,6 +18,17 @@
       url = "github:danth/stylix/release-24.11";
       inputs.nixpkgs.follows = "home-manager";
     };
+
+    # assorted inputs
+    # plugin-nvim-tree.url = "https://github.com/nvim-tree/nvim-tree.lua";
+    # plugin-nvim-tree.flake = false;
+
+    plugin-nvim-tree = {
+      type = "github";
+      owner = "nvim-tree";
+      repo = "nvim-tree.lua";
+      flake = false;
+    };
   };
 
   outputs = {

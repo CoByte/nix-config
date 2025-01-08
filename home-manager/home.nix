@@ -31,12 +31,14 @@
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
 
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
+      (final: prev: {
+        vimPlugins = prev.vimPlugins // {
+          own-nvim-tree = prev.vimUtils.buildVimPlugin {
+            name = "nvim-tree";
+            src = inputs.plugin-nvim-tree;
+          };
+        };
+      })
     ];
     # Configure your nixpkgs instance
     config = {
@@ -77,7 +79,6 @@
 
     plugins = with pkgs; [
       tmuxPlugins.better-mouse-mode
-      tmuxPlugins.vim-tmux-navigator
     ];
 
     extraConfig = ''
@@ -133,7 +134,10 @@
 
       # styling
       vimPlugins.nvim-web-devicons
-      vimPlugins.bufferline-nvim
+      {
+        plugin = vimPlugins.bufferline-nvim;
+        config = minimalConfig "bufferline";
+      }
       {
         plugin = vimPlugins.lualine-nvim;
         config = toLuaFile ./nvim/plugins/lualine.lua;
@@ -152,6 +156,10 @@
 
       # tabs
       vimPlugins.vim-tmux-navigator
+      {
+        plugin = vimPlugins.own-nvim-tree;
+        config = toLuaFile ./nvim/plugins/nvim-tree.lua;
+      }
 
       # autocompletion
       vimPlugins.cmp-buffer

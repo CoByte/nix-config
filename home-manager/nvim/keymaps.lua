@@ -7,12 +7,6 @@ vim.g.maplocalleader = " "
 
 local keymap = vim.keymap -- for conciseness
 
--- The output of the module
--- To make the config easier to navigate, all keybind configuration should occur
--- in this file. If keybinds must be set by another module (for example, on lsp
--- attach), they should be placed in output, and loaded with require.
-local output = {}
-
 -- easy exit out of insert mode
 keymap.set("i", "jk", "<ESC>")
 keymap.set("i", "kj", "<ESC>")
@@ -57,21 +51,21 @@ wk.add({
 })
 
 -- REST
-wk.add({
-	{ "<leader>r", group = "REST" },
-	{ "<leader>rl", "<Plug>RestNvimLast", desc = "Run prev. request" },
-	{ "<leader>rp", "<Plug>RestNvimPreview", desc = "Preview request" },
-	{ "<leader>rr", "<Plug>RestNvim", desc = "Run request" },
-})
+-- wk.add({
+-- 	{ "<leader>r", group = "REST" },
+-- 	{ "<leader>rl", "<Plug>RestNvimLast", desc = "Run prev. request" },
+-- 	{ "<leader>rp", "<Plug>RestNvimPreview", desc = "Preview request" },
+-- 	{ "<leader>rr", "<Plug>RestNvim", desc = "Run request" },
+-- })
 
 -- splits
 wk.add({
 	{ "<leader>s", group = "split" },
 	{ "<leader>s-", "<C-w>s", desc = "Split vertically" },
+	{ "<leader>s\\", "<C-w>v", desc = "Split horizontally" },
 	{ "<leader>se", "<C-w>=", desc = "Equalize windows" },
 	{ "<leader>sm", ":MaximizerToggle<CR>", desc = "Maximize Split" },
 	{ "<leader>sx", ":close<CR>", desc = "Close current window" },
-	{ "<leader>s|", "<C-w>v", desc = "Split horizontally" },
 })
 
 -- tests
