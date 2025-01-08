@@ -144,7 +144,24 @@
       }
 
       # treesitter
-      # do treesitter later
+      (vimPlugins.nvim-treesitter.withPlugins (p: [
+        p.arduino
+        p.ssh-config
+        p.zig
+        p.make
+        p.markdown
+        p.yaml
+        p.toml
+        p.lua
+        p.vim
+        p.csv
+        p.rust
+        p.c
+        p.cpp
+        p.python
+        p.r
+        p.nix
+      ]))
 
       # fuzzy finding
       vimPlugins.telescope-fzf-native-nvim
