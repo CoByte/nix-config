@@ -163,6 +163,8 @@
 
   environment.systemPackages = with pkgs; [
     git # need this first for flakes
+    git-crypt # for secret management
+
     vim
     wget
   ];
