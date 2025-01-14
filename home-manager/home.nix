@@ -161,6 +161,8 @@
         p.python
         p.r
         p.nix
+        p.typst
+        p.python
       ]))
 
       # fuzzy finding
@@ -202,6 +204,13 @@
         config = toLuaFile ./nvim/plugins/lsp/lspconfig.lua;
       }
 
+      # language specific plugins
+      # typst
+      {
+        plugin = vimPlugins.typst-preview-nvim;
+        config = minimalConfig "typst-preview";
+      }
+
       # formatting & linting
       {
         plugin = vimPlugins.null-ls-nvim;
@@ -241,6 +250,8 @@
     discord
     obsidian
     gnome-tweaks
+    arduino-ide
+    thunderbird
 
     # random garbage
     neo-cowsay
@@ -248,14 +259,19 @@
     grc
     nix-prefetch-github
     ripgrep
+    arduino-cli
+    python314
+    clangStdenv
 
     # language servers
     nil
     rust-analyzer
     lua-language-server
     libclang
-    typst-lsp
+    tinymist
     ruby-lsp
+    pyright
+    arduino-language-server
 
     # formatters/linters
     stylua

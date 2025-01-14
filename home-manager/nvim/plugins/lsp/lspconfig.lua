@@ -50,6 +50,7 @@ local function configure_lsp(name, more_config)
 end
 
 configure_lsp("nil_ls", {})
+configure_lsp("arduino_language_server", {})
 
 configure_lsp("rust_analyzer", {
 	settings = {
@@ -101,7 +102,7 @@ configure_lsp("clangd", {
 		"clangd",
 		"--background-index",
 		"-j=12",
-		"--query-driver=/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++",
+		"--query-driver=/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++,/home/raine/.arduino15/packages/*/tools/**/*-gcc,/home/raine/.arduino15/packages/*/tools/**/*-g++",
 		"--clang-tidy",
 		"--clang-tidy-checks=*",
 		"--all-scopes-completion",
@@ -111,9 +112,12 @@ configure_lsp("clangd", {
 		"--header-insertion=iwyu",
 		"--pch-storage=memory",
 	},
+	init_options = {
+		fallbackFlags = { "-std=c++17" },
+	},
 })
 
-configure_lsp("typst_lsp", {
+configure_lsp("tinymist", {
 	on_attach = function(client, buffer)
 		on_attach(client, buffer)
 		wk.add({
@@ -123,8 +127,13 @@ configure_lsp("typst_lsp", {
 			{ "<leader>pj", "<cmd>TypstPreviewSyncCursor<CR>", desc = "Sync cursor" },
 		})
 	end,
+	root_dir = lspconfig.util.root_pattern("main.typ", "*.typ"),
 	settings = {
-		exportPdf = "never",
+		tinymist = {
+			settings = {
+				formatterMode = "typstfmt",
+			},
+		},
 	},
 })
 
