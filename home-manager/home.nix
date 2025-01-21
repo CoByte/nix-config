@@ -51,20 +51,19 @@
   home.homeDirectory = "/home/raine";
 
   # Add stuff for your user as you see fit:
-  programs.kitty.enable = true;
+  programs.kitty = {
+    enable = true;
+    shellIntegration.enableFishIntegration = true;
+  };
 
   programs.fish = {
     enable = true;
-    interactiveShellInit = ''
-      set fish_greeting # disable greeting
+    interactiveShellInit = builtins.readFile ./fish/config.fish;
 
-      # launch tmux on startup
-      if type -q tmux
-          if not test -n "$TMUX"
-              tmux attach-session -t default; or tmux new-session -s default
-          end
-      end
-    '';
+    functions = {
+      "fish_prompt" = builtins.readFile ./fish/functions/fish_prompt.fish;
+    };
+
     plugins = [
       { name = "grc"; src = pkgs.fishPlugins.grc.src; }
     ];
@@ -79,6 +78,8 @@
 
     plugins = with pkgs; [
       tmuxPlugins.better-mouse-mode
+      tmuxPlugins.resurrect
+      tmuxPlugins.continuum
     ];
 
     extraConfig = ''
@@ -262,6 +263,7 @@
     arduino-cli
     python314
     clangStdenv
+    gnumake42
 
     # language servers
     nil

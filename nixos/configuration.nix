@@ -120,6 +120,12 @@
     pulse.enable = true;
   };
 
+  # hardware.opengl.enable = true;
+  hardware.graphics = {
+    enable = true;
+    extraPackages = [ pkgs.mesa.drivers ];
+  };
+
   users.users.raine = {
     isNormalUser = true;
     description = "raine";
