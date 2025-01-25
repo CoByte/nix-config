@@ -58,6 +58,12 @@ wk.add({
 -- 	{ "<leader>rr", "<Plug>RestNvim", desc = "Run request" },
 -- })
 
+-- buffers
+wk.add({
+	{ "<leader>b", group = "buffer" },
+	{ "<leader>bd", "<cmd>bd<CR>", desc = "Delete buffer" },
+})
+
 -- splits
 wk.add({
 	{ "<leader>s", group = "split" },

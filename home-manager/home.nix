@@ -132,6 +132,10 @@
         plugin = vimPlugins.neodev-nvim;
         config = toLuaFile ./nvim/plugins/neodev.lua;
       }
+      {
+        plugin = vimPlugins.wrapping-nvim;
+        config = minimalConfig "wrapping";
+      }
 
       # styling
       vimPlugins.nvim-web-devicons
@@ -253,6 +257,7 @@
     gnome-tweaks
     arduino-ide
     thunderbird
+    obs-studio
 
     # random garbage
     neo-cowsay
@@ -264,6 +269,7 @@
     python314
     clangStdenv
     gnumake42
+    xclip
 
     # language servers
     nil

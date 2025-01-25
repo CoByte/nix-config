@@ -47,18 +47,17 @@ opt.splitbelow = true
 -- opt.ttimeout = false
 
 -- override filetypes
+local function override_filetype(pattern, target)
+	vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+		pattern = pattern,
+		callback = function()
+			vim.opt.filetype = target
+		end,
+		group = "FileTypeOverrides",
+	})
+end
+
 vim.api.nvim_create_augroup("FileTypeOverrides", { clear = true })
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = "*.typ",
-	callback = function()
-		vim.opt.filetype = "typst"
-	end,
-	group = "FileTypeOverrides",
-})
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = "*.pro",
-	callback = function()
-		vim.opt.filetype = "prolog"
-	end,
-	group = "FileTypeOverrides",
-})
+override_filetype("*.typ", "typst")
+override_filetype("*pro", "prolog")
+override_filetype("*.vert,*.frag,*.comp,*.rchit,*.rmiss,*.rahit", "glsl")
