@@ -5,23 +5,9 @@ local treesitter = require("nvim-treesitter.configs")
 vim.cmd("autocmd FileType ruby setlocal indentkeys-=.")
 
 treesitter.setup({
-	-- A list of parser names, or "all"
-	ensure_installed = {
-		"c",
-		"lua",
-		"rust",
-		"vim",
-		"zig",
-		-- http and json needed for rest
-		"http",
-		"json",
-		"javascript",
-		"css",
-	},
-
-	-- Install parsers synchronously (only applied to 'ensure_installed')
+	-- don't ever try to install things (it is evil)
 	sync_install = false,
-	auto_install = true,
+	auto_install = false,
 	highlight = {
 		enable = true,
 	},
