@@ -168,6 +168,7 @@
         p.nix
         p.typst
         p.python
+        p.just
       ]))
 
       # fuzzy finding
