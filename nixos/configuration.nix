@@ -173,6 +173,8 @@
 
     vim
     wget
+
+    protonup
   ];
 
   # stylix config

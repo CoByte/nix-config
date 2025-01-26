@@ -50,6 +50,10 @@
   home.username = "raine";
   home.homeDirectory = "/home/raine";
 
+  home.sessionVariables = {
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
+  };
+
   # Add stuff for your user as you see fit:
   programs.kitty = {
     enable = true;
