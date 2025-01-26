@@ -61,7 +61,7 @@ wk.add({
 -- buffers
 wk.add({
 	{ "<leader>b", group = "buffer" },
-	{ "<leader>bd", "<cmd>bd<CR>", desc = "Delete buffer" },
+	{ "<leader>bd", "<cmd>bp|bd #<CR>", desc = "Delete buffer" },
 })
 
 -- splits
