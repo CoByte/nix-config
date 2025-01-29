@@ -1,5 +1,3 @@
-# This is your home-manager configuration file
-# Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
   inputs,
   outputs,
@@ -8,7 +6,6 @@
   pkgs,
   ...
 }: {
-  # You can import other home-manager modules here
   imports = [
     ./generate-git-users.nix
 
@@ -23,7 +20,6 @@
   ];
 
   nixpkgs = {
-    # You can add overlays here
     overlays = [
       # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
@@ -42,9 +38,7 @@
         };
       })
     ];
-    # Configure your nixpkgs instance
     config = {
-      # Disable if you don't want unfree packages
       allowUnfree = true;
     };
   };
@@ -56,7 +50,6 @@
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
   };
 
-  # Add stuff for your user as you see fit:
   programs.kitty = {
     enable = true;
     shellIntegration.enableFishIntegration = true;
@@ -97,6 +90,18 @@
     toLua = str: "lua << EOF\n${str}\nEOF\n";
     toLuaFile = file: toLua (builtins.readFile file);
     minimalConfig = name: toLua "require(\"${name}\").setup()";
+
+    minimalPlugin = pkg: name: {
+      plugin = pkg;
+      config = minimalConfig name;
+    };
+    # this is a terrible name, but it makes the lines line up :)
+    configdPlugin = pkg: path: {
+      plugin = pkg;
+      config = toLuaFile path;
+    };
+
+    vp = pkgs.vimPlugins;
   in {
     enable = true;
     defaultEditor = true;
@@ -105,58 +110,28 @@
     vimAlias = true;
     vimdiffAlias = true;
 
-    plugins = with pkgs; [
+    plugins = [
       # random dependencies
-      vimPlugins.plenary-nvim
+      vp.plenary-nvim
 
       # useful
-      {
-        plugin = vimPlugins.which-key-nvim;
-        config = minimalConfig "which-key";
-      }
-      {
-        plugin = vimPlugins.nvim-surround;
-        config = minimalConfig "nvim-surround";
-      }
-      {
-        plugin = vimPlugins.comment-nvim;
-        config = minimalConfig "Comment";
-      }
-      {
-        plugin = vimPlugins.inc-rename-nvim;
-        config = minimalConfig "inc_rename";
-      }
-      {
-        plugin = vimPlugins.nvim-autopairs;
-        config = toLuaFile ./nvim/plugins/autopairs.lua;
-      }
-      {
-        plugin = vimPlugins.gitsigns-nvim;
-        config = minimalConfig "gitsigns";
-      }
-      {
-        plugin = vimPlugins.neodev-nvim;
-        config = toLuaFile ./nvim/plugins/neodev.lua;
-      }
-      {
-        plugin = vimPlugins.wrapping-nvim;
-        config = minimalConfig "wrapping";
-      }
+      (minimalPlugin vp.which-key-nvim "which-key")
+      (minimalPlugin vp.nvim-surround "nvim-surround")
+      (minimalPlugin vp.comment-nvim "Comment")
+      (minimalPlugin vp.inc-rename-nvim "inc_rename")
+      (configdPlugin vp.nvim-autopairs ./nvim/plugins/autopairs.lua)
+      (minimalPlugin vp.gitsigns-nvim "gitsigns")
+      (configdPlugin vp.neodev-nvim ./nvim/plugins/neodev.lua)
+      (minimalPlugin vp.wrapping-nvim "wrapping")
 
       # styling
-      vimPlugins.nvim-web-devicons
-      {
-        plugin = vimPlugins.bufferline-nvim;
-        config = minimalConfig "bufferline";
-      }
-      {
-        plugin = vimPlugins.lualine-nvim;
-        config = toLuaFile ./nvim/plugins/lualine.lua;
-      }
+      vp.nvim-web-devicons
+      (minimalPlugin vp.bufferline-nvim "bufferline")
+      (configdPlugin vp.lualine-nvim ./nvim/plugins/lualine.lua)
 
       # treesitter
       {
-        plugin = vimPlugins.nvim-treesitter.withPlugins (p: [
+        plugin = vp.nvim-treesitter.withPlugins (p: [
           p.arduino
           p.ssh-config
           p.zig
@@ -185,56 +160,35 @@
       }
 
       # fuzzy finding
-      vimPlugins.telescope-fzf-native-nvim
-      vimPlugins.telescope-ui-select-nvim
-      {
-        plugin = vimPlugins.telescope-nvim;
-        config = toLuaFile ./nvim/plugins/telescope.lua;
-      }
+      vp.telescope-fzf-native-nvim
+      vp.telescope-ui-select-nvim
+      (configdPlugin vp.telescope-nvim ./nvim/plugins/telescope.lua)
 
       # tabs
-      vimPlugins.vim-tmux-navigator
-      {
-        plugin = vimPlugins.own-nvim-tree;
-        config = toLuaFile ./nvim/plugins/nvim-tree.lua;
-      }
+      vp.vim-tmux-navigator
+      (configdPlugin vp.own-nvim-tree ./nvim/plugins/nvim-tree.lua)
 
       # autocompletion
-      vimPlugins.cmp-buffer
-      vimPlugins.cmp-path
-      {
-        plugin = vimPlugins.nvim-cmp;
-        config = toLuaFile ./nvim/plugins/nvim-cmp.lua;
-      }
+      vp.cmp-buffer
+      vp.cmp-path
+      (configdPlugin vp.nvim-cmp ./nvim/plugins/nvim-cmp.lua)
 
       # snippets
-      vimPlugins.cmp_luasnip
-      vimPlugins.friendly-snippets
-      {
-        plugin = vimPlugins.luasnip;
-        config = toLuaFile ./nvim/plugins/nvim-cmp.lua;
-      }
+      vp.cmp_luasnip
+      vp.friendly-snippets
+      (configdPlugin vp.luasnip ./nvim/plugins/nvim-cmp.lua)
 
       # lsp stuff
-      vimPlugins.cmp-nvim-lsp
-      vimPlugins.lspkind-nvim
-      {
-        plugin = vimPlugins.nvim-lspconfig;
-        config = toLuaFile ./nvim/plugins/lsp/lspconfig.lua;
-      }
+      vp.cmp-nvim-lsp
+      vp.lspkind-nvim
+      (configdPlugin vp.nvim-lspconfig ./nvim/plugins/lsp/lspconfig.lua)
 
       # language specific plugins
       # typst
-      {
-        plugin = vimPlugins.typst-preview-nvim;
-        config = minimalConfig "typst-preview";
-      }
+      (minimalPlugin vp.typst-preview-nvim "typst-preview")
 
       # formatting & linting
-      {
-        plugin = vimPlugins.null-ls-nvim;
-        config = toLuaFile ./nvim/plugins/lsp/null-ls.lua;
-      }
+      (configdPlugin vp.null-ls-nvim ./nvim/plugins/lsp/null-ls.lua)
     ];
 
     extraLuaConfig = ''
