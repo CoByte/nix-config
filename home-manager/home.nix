@@ -309,7 +309,7 @@
       github = true;
       user.name = "cobyte";
       user.email = "32520644+CoByte@users.noreply.github.com";
-      core.sshCommand = "ssh";
+      core.sshCommand = "ssh =i ~/.ssh/id_rsa";
     };
     rainewheary = {
       github = true;
