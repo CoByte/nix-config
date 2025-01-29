@@ -10,6 +10,8 @@
 }: {
   # You can import other home-manager modules here
   imports = [
+    ./generate-git-users.nix
+
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
 
@@ -298,14 +300,26 @@
     black
   ];
 
-  # Enable home-manager and git
   programs.home-manager.enable = true;
 
-  programs.git = {
-    enable = true;
-    userName = "cobyte";
-    userEmail = "owen356wh@gmail.com";
+  programs.git.enable = true;
+  
+  git.common-users = {
+    cobyte = {
+      github = true;
+      user.name = "cobyte";
+      user.email = "32520644+CoByte@users.noreply.github.com";
+      core.sshCommand = "ssh";
+    };
+    rainewheary = {
+      github = true;
+      user.name = "rwheary";
+      user.email = "130535726+rainewheary@users.noreply.github.com";
+      core.sshCommand = "ssh -i ~/.ssh/id_rsa_OSU";
+    };
   };
+
+  git.common-users-default = "cobyte";
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
