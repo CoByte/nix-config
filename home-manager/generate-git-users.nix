@@ -7,12 +7,12 @@ in
 
 {
 
-  options.minx.git.common-users = lib.mkOption {
+  options.git.common-users = lib.mkOption {
     description = "list of users to easily switch between";
     type = T.attrsOf (T.attrsOf (T.either T.bool (T.attrsOf T.str)));
   };
 
-  options.minx.git.common-users-default = lib.mkOption {
+  options.git.common-users-default = lib.mkOption {
     description = "default user from the list of common users";
     type = T.nullOr T.str;
     default = null;
@@ -20,8 +20,8 @@ in
 
   config =
     let
-      common-users         = config.minx.git.common-users;
-      common-users-default = config.minx.git.common-users-default;
+      common-users         = config.git.common-users;
+      common-users-default = config.git.common-users-default;
       stripGithub = obj: builtins.removeAttrs obj [ "github" ];
       makeIni     = _: gitConfig: lib.generators.toGitINI (stripGithub gitConfig);
       iniFiles    = builtins.mapAttrs makeIni common-users;
