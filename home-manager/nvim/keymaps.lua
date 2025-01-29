@@ -45,7 +45,7 @@ wk.add({
 	{ "<leader>f", group = "telescope" },
 	{ "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Buffers" },
 	{ "<leader>fc", "<cmd>Telescope grep_string<CR>", desc = "Grep string" },
-	{ "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find files" },
+	{ "<leader>ff", "<cmd>Telescope find_files hidden=true no_ignore=true<CR>", desc = "Find files" },
 	{ "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "Help" },
 	{ "<leader>fs", "<cmd>Telescope live_grep<CR>", desc = "Live grep" },
 })
