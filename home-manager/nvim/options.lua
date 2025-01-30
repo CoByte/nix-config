@@ -20,12 +20,14 @@ opt.expandtab = true
 opt.number = true
 opt.relativenumber = true
 
+-- 80 character line limit
+opt.colorcolumn = "80"
+
 -- line wrapping
 opt.wrap = false
 
 -- search settings
 opt.ignorecase = true
-opt.smartcase = true
 
 -- appearance
 opt.termguicolors = true

@@ -155,6 +155,7 @@
           p.css
           p.javascript
           p.json
+          p.glsl
         ]);
         config = toLuaFile ./nvim/plugins/treesitter.lua;
       }
@@ -229,6 +230,8 @@
 
     # random garbage
     neo-cowsay
+    fzf
+    ranger
     toybox
     grc
     nix-prefetch-github
@@ -238,6 +241,7 @@
     clangStdenv
     gnumake42
     xclip
+    typst
 
     # language servers
     nil
