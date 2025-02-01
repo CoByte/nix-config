@@ -40,6 +40,21 @@ wk.add({
 	{ "<leader>e", ":NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
 })
 
+vim.api.nvim_create_user_command("ToggleCC", function(opts)
+	local value = vim.api.nvim_get_option_value("colorcolumn", {})
+	if value == "" then
+		vim.opt.colorcolumn = "80"
+	else
+		vim.opt.colorcolumn = ""
+	end
+end, {})
+
+-- random things
+wk.add({
+	{ "<leader>m", group = "misc" },
+	{ "<leader>mc", "<cmd>ToggleCC<CR>" },
+})
+
 -- telescope
 wk.add({
 	{ "<leader>f", group = "telescope" },
