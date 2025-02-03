@@ -179,6 +179,13 @@
     enable = true;
     image = ../assets/wallpaper.png;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+
+    fonts = {
+      monospace = {
+        package = pkgs.jetbrains-mono;
+        name = "Jetbrains Mono";
+      };
+    };
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

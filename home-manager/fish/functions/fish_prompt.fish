@@ -31,4 +31,7 @@ set -l status_color (set_color $fish_color_status)
 set -l statusb_color (set_color $bold_flag $fish_color_status)
 set -l prompt_status (__fish_print_pipestatus "[" "]" "|" "$status_color" "$statusb_color" $last_pipestatus)
 
-echo -n -s (prompt_login)' ' (set_color $color_cwd) (prompt_pwd) $normal (fish_vcs_prompt) (set_color blue) $nix_icon $normal " "$prompt_status $suffix " "
+# prevents the ~ directory from merging with the ">" suffix
+set -l ZWNJ (printf '\U200C')
+
+echo -n -s (prompt_login)' ' (set_color $color_cwd) (prompt_pwd) $ZWNJ $normal (fish_vcs_prompt) (set_color blue) $nix_icon $normal " "$prompt_status $suffix " "
