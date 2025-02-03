@@ -10,6 +10,11 @@ opt.laststatus = 2 -- always show status line
 opt.cursorline = true -- line at cursor position
 -- opt.autoread = true   -- refresh file if it has been modified outside of vim
 
+-- folding
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldenable = false -- don't fold on open
+
 -- use spaces for tabs
 opt.tabstop = 2
 opt.shiftwidth = 2
