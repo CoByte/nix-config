@@ -128,7 +128,7 @@
       vp.nvim-web-devicons
       (minimalPlugin vp.bufferline-nvim "bufferline")
       (configdPlugin vp.lualine-nvim ./nvim/plugins/lualine.lua)
-      (minimalPlugin vp.pretty-fold-nvim "pretty-fold")
+      # (minimalPlugin vp.pretty-fold-nvim "pretty-fold")
 
       # treesitter
       {
