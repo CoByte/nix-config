@@ -123,6 +123,7 @@
       (minimalPlugin vp.gitsigns-nvim "gitsigns")
       (configdPlugin vp.neodev-nvim ./nvim/plugins/neodev.lua)
       (minimalPlugin vp.wrapping-nvim "wrapping")
+      vp.vim-sleuth
 
       # styling
       vp.nvim-web-devicons
