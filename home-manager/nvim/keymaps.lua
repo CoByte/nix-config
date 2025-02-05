@@ -11,6 +11,10 @@ local keymap = vim.keymap -- for conciseness
 keymap.set("i", "jk", "<ESC>")
 keymap.set("i", "kj", "<ESC>")
 
+-- nice movement on soft wrapped lines
+keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
+keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
+
 -- ensures space doesn't do anything in normal mode on its own
 keymap.set("n", "<Space>", "<Nop>", { silent = true, remap = false })
 
