@@ -13,6 +13,8 @@ opt.cursorline = true -- line at cursor position
 -- folding
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldtext = ""
+opt.fillchars = "fold:·"
 opt.foldenable = false -- don't fold on open
 
 -- use spaces for tabs
