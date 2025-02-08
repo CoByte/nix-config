@@ -29,14 +29,14 @@
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
 
-      (final: prev: {
-        vimPlugins = prev.vimPlugins // {
-          own-nvim-tree = prev.vimUtils.buildVimPlugin {
-            name = "nvim-tree";
-            src = inputs.plugin-nvim-tree;
-          };
-        };
-      })
+      # (final: prev: {
+      #   vimPlugins = prev.vimPlugins // {
+      #     own-nvim-tree = prev.vimUtils.buildVimPlugin {
+      #       name = "nvim-tree";
+      #       src = inputs.plugin-nvim-tree;
+      #     };
+      #   };
+      # })
     ];
     config = {
       allowUnfree = true;
@@ -118,12 +118,15 @@
       (minimalPlugin vp.which-key-nvim "which-key")
       (minimalPlugin vp.nvim-surround "nvim-surround")
       (minimalPlugin vp.comment-nvim "Comment")
-      (minimalPlugin vp.inc-rename-nvim "inc_rename")
+      # (minimalPlugin vp.inc-rename-nvim "inc_rename")
       (configdPlugin vp.nvim-autopairs ./nvim/plugins/autopairs.lua)
       (minimalPlugin vp.gitsigns-nvim "gitsigns")
-      (configdPlugin vp.neodev-nvim ./nvim/plugins/neodev.lua)
+      # (configdPlugin vp.neodev-nvim ./nvim/plugins/neodev.lua)
       (minimalPlugin vp.wrapping-nvim "wrapping")
       vp.vim-sleuth
+
+      # snacks
+      (configdPlugin vp.snacks-nvim ./nvim/plugins/snacks.lua)
 
       # styling
       vp.nvim-web-devicons
@@ -157,18 +160,19 @@
           p.javascript
           p.json
           p.glsl
+          p.fish
         ]);
         config = toLuaFile ./nvim/plugins/treesitter.lua;
       }
 
       # fuzzy finding
-      vp.telescope-fzf-native-nvim
-      vp.telescope-ui-select-nvim
-      (configdPlugin vp.telescope-nvim ./nvim/plugins/telescope.lua)
+      # vp.telescope-fzf-native-nvim
+      # vp.telescope-ui-select-nvim
+      # (configdPlugin vp.telescope-nvim ./nvim/plugins/telescope.lua)
 
       # tabs
       vp.vim-tmux-navigator
-      (configdPlugin vp.own-nvim-tree ./nvim/plugins/nvim-tree.lua)
+      # (configdPlugin vp.own-nvim-tree ./nvim/plugins/nvim-tree.lua)
 
       # autocompletion
       vp.cmp-buffer

@@ -41,7 +41,7 @@ end, { silent = true })
 -- top level binds
 wk.add({
 	{ "<leader>h", ":nohlsearch<CR>", desc = "Clear highlight" },
-	{ "<leader>e", ":NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
+	-- { "<leader>e", ":NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
 })
 
 vim.api.nvim_create_user_command("ToggleCC", function(opts)
@@ -57,30 +57,33 @@ end, {})
 wk.add({
 	{ "<leader>m", group = "misc" },
 	{ "<leader>mc", "<cmd>ToggleCC<CR>" },
+	{
+		"<leader>mm",
+		function()
+			local s = require("snacks")
+			keys = {}
+			for k, _ in pairs(s) do
+				table.insert(keys, k)
+			end
+			vim.notify(table.concat(keys, ", "))
+		end,
+	},
 })
 
 -- telescope
 wk.add({
-	{ "<leader>f", group = "telescope" },
-	{ "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Buffers" },
-	{ "<leader>fc", "<cmd>Telescope grep_string<CR>", desc = "Grep string" },
-	{ "<leader>ff", "<cmd>Telescope find_files hidden=true no_ignore=true<CR>", desc = "Find files" },
-	{ "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "Help" },
-	{ "<leader>fs", "<cmd>Telescope live_grep<CR>", desc = "Live grep" },
+	{ "<leader>f", group = "fuzzy-find" },
+	-- { "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Buffers" },
+	-- { "<leader>fc", "<cmd>Telescope grep_string<CR>", desc = "Grep string" },
+	-- { "<leader>ff", "<cmd>Telescope find_files hidden=true no_ignore=true<CR>", desc = "Find files" },
+	-- { "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "Help" },
+	-- { "<leader>fs", "<cmd>Telescope live_grep<CR>", desc = "Live grep" },
 })
-
--- REST
--- wk.add({
--- 	{ "<leader>r", group = "REST" },
--- 	{ "<leader>rl", "<Plug>RestNvimLast", desc = "Run prev. request" },
--- 	{ "<leader>rp", "<Plug>RestNvimPreview", desc = "Preview request" },
--- 	{ "<leader>rr", "<Plug>RestNvim", desc = "Run request" },
--- })
 
 -- buffers
 wk.add({
 	{ "<leader>b", group = "buffer" },
-	{ "<leader>bd", "<cmd>bp|bd #<CR>", desc = "Delete buffer" },
+	-- { "<leader>bd", "<cmd>bp|bd #<CR>", desc = "Delete buffer" },
 })
 
 -- splits
@@ -95,10 +98,10 @@ wk.add({
 
 -- tests
 wk.add({
-	{ "<leader>t", group = "tests" },
-	{ "<leader>tf", '<cmd>lua require("neotest").run.run(vim.fn.expand("%"))<CR>', desc = "Run file" },
-	{ "<leader>tr", '<cmd>lua require("neotest").run.run()<CR>', desc = "Run nearest" },
-	{ "<leader>tx", '<cmd>lua require("neotest").run.stop()<CR>', desc = "Stop nearest" },
+	-- { "<leader>t", group = "tests" },
+	-- { "<leader>tf", '<cmd>lua require("neotest").run.run(vim.fn.expand("%"))<CR>', desc = "Run file" },
+	-- { "<leader>tr", '<cmd>lua require("neotest").run.run()<CR>', desc = "Run nearest" },
+	-- { "<leader>tx", '<cmd>lua require("neotest").run.stop()<CR>', desc = "Stop nearest" },
 })
 
 -- hidden binds
