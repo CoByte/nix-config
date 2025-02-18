@@ -123,6 +123,7 @@
       (minimalPlugin vp.gitsigns-nvim "gitsigns")
       (configdPlugin vp.neodev-nvim ./nvim/plugins/neodev.lua)
       (minimalPlugin vp.wrapping-nvim "wrapping")
+      (minimalPlugin vp.git-conflict-nvim "git-conflict")
       vp.vim-sleuth
 
       # styling
@@ -160,6 +161,7 @@
         ]);
         config = toLuaFile ./nvim/plugins/treesitter.lua;
       }
+      (configdPlugin vp.nvim-treesitter-textsubjects ./nvim/plugins/treesitter-textsubjects.lua)
 
       # fuzzy finding
       vp.telescope-fzf-native-nvim
