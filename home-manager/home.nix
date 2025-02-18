@@ -126,6 +126,9 @@
       (minimalPlugin vp.git-conflict-nvim "git-conflict")
       vp.vim-sleuth
 
+      # snacks!
+      (configdPlugin vp.snacks-nvim ./nvim/plugins/snacks.lua)
+
       # styling
       vp.nvim-web-devicons
       (minimalPlugin vp.bufferline-nvim "bufferline")
