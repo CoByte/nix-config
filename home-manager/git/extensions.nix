@@ -4,15 +4,15 @@
   config = {
     home.packages = let
       open = pkgs.writeShellApplication {
-        name = "git-open";
+        name = "git-visit";
         runtimeInputs = [ config.programs.git.package ];
         text = ''
-          remote=$(git remote -v | awk '/origin/.*push/ {print $2}')
+          git remote -v | awk '/origin.*push/ {print $2}' |  sed -n "s/http.*/\0/p;s/.*@\(.*\):\(.*\)\.git/https:\/\/\1\/\2/p" | xargs xdg-open
         '';
       };
     in
     [ open ];
 
-    programs.git.aliases."open" = "open";
+    programs.git.aliases."visit" = "visit";
   };
 }
