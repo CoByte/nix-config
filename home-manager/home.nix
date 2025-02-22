@@ -125,6 +125,7 @@
       (minimalPlugin vp.wrapping-nvim "wrapping")
       (minimalPlugin vp.git-conflict-nvim "git-conflict")
       vp.vim-sleuth
+      vp.vim-exchange
 
       # styling
       vp.nvim-web-devicons
