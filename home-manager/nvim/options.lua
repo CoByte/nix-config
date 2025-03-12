@@ -66,4 +66,4 @@ end
 vim.api.nvim_create_augroup("FileTypeOverrides", { clear = true })
 override_filetype("*.typ", "typst")
 override_filetype("*pro", "prolog")
-override_filetype("*.vert,*.frag,*.comp,*.rchit,*.rmiss,*.rahit", "glsl")
+override_filetype("*.vert,*.frag,*.geom,*.comp,*.rchit,*.rmiss,*.rahit", "glsl")

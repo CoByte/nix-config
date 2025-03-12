@@ -174,6 +174,12 @@
     protonup
   ];
 
+  fonts.packages = with pkgs; [
+    roboto
+    source-sans-pro
+    texlivePackages.fontawesome
+  ];
+
   # stylix config
   stylix = {
     enable = true;
