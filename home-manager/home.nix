@@ -159,6 +159,7 @@
           p.javascript
           p.json
           p.glsl
+          p.ocaml
         ]);
         config = toLuaFile ./nvim/plugins/treesitter.lua;
       }

@@ -122,6 +122,11 @@
     extraPackages = [ pkgs.mesa.drivers ];
   };
 
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
+
   users.users.raine = {
     isNormalUser = true;
     description = "raine";
