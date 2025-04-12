@@ -52,6 +52,9 @@ opt.splitbelow = true
 -- opt.timeout = false
 -- opt.ttimeout = false
 
+-- disable zig format error
+vim.g.zig_fmt_parse_errors = 0
+
 -- override filetypes
 local function override_filetype(pattern, target)
 	vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {

@@ -187,14 +187,14 @@
       # lsp stuff
       vp.cmp-nvim-lsp
       vp.lspkind-nvim
-      (configdPlugin vp.nvim-lspconfig ./nvim/plugins/lsp/lspconfig.lua)
+      (configdPlugin vp.nvim-lspconfig ./nvim/plugins/lspconfig.lua)
 
       # language specific plugins
       # typst
       (minimalPlugin vp.typst-preview-nvim "typst-preview")
 
       # formatting & linting
-      (configdPlugin vp.null-ls-nvim ./nvim/plugins/lsp/null-ls.lua)
+      (configdPlugin vp.conform-nvim ./nvim/plugins/conform.lua)
     ];
 
     extraLuaConfig = ''
@@ -223,7 +223,7 @@
     ripgrep
     arduino-cli
     python314
-    clangStdenv
+    # clangStdenv
     gnumake42
     xclip
     typst
@@ -232,7 +232,8 @@
     nil
     rust-analyzer
     lua-language-server
-    libclang
+    # libclang
+    clang-tools
     tinymist
     ruby-lsp
     pyright
