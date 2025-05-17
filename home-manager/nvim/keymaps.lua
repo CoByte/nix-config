@@ -57,6 +57,7 @@ end, {})
 wk.add({
 	{ "<leader>m", group = "misc" },
 	{ "<leader>mc", "<cmd>ToggleCC<CR>" },
+	{ "<leader>mh", "<cmd>HexToggle<cr>" },
 })
 
 -- telescope

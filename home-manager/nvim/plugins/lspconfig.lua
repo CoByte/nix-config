@@ -39,18 +39,14 @@ end
 
 -- helper for configuring lsp servers
 local function configure_lsp(name, more_config)
-	local working = {
-		on_attach = on_attach,
-		capabilities = capabilities,
-	}
-	for k, v in pairs(more_config) do
-		working[k] = v
-	end
-	lspconfig[name].setup(working)
+	more_config.on_attach = on_attach
+	more_config.capabilities = capabilities
+	lspconfig[name].setup(more_config)
 end
 
 configure_lsp("nil_ls", {})
 configure_lsp("arduino_language_server", {})
+configure_lsp("zls", {})
 
 configure_lsp("rust_analyzer", {
 	settings = {

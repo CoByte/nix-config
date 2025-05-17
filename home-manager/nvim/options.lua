@@ -1,7 +1,7 @@
 local opt = vim.opt -- for conciseness
 
 -- format on save
-vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])
+-- vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])
 
 -- random stuff
 opt.showcmd = true -- shows command in the bottom
@@ -54,6 +54,7 @@ opt.splitbelow = true
 
 -- disable zig format error
 vim.g.zig_fmt_parse_errors = 0
+vim.g.zig_fmt_autosave = 0
 
 -- override filetypes
 local function override_filetype(pattern, target)

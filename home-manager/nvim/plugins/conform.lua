@@ -7,6 +7,8 @@ conform.setup({
 		zig = { "zigfmt" },
 		c = { "clang-format" },
 		["c++"] = { "clang-format" },
+		nix = { "alejandra" },
+		python = { "black" },
 	},
 
 	format_on_save = {

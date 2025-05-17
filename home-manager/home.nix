@@ -30,12 +30,14 @@
       # neovim-nightly-overlay.overlays.default
 
       (final: prev: {
-        vimPlugins = prev.vimPlugins // {
-          own-nvim-tree = prev.vimUtils.buildVimPlugin {
-            name = "nvim-tree";
-            src = inputs.plugin-nvim-tree;
+        vimPlugins =
+          prev.vimPlugins
+          // {
+            own-nvim-tree = prev.vimUtils.buildVimPlugin {
+              name = "nvim-tree";
+              src = inputs.plugin-nvim-tree;
+            };
           };
-        };
       })
     ];
     config = {
@@ -64,7 +66,10 @@
     };
 
     plugins = [
-      { name = "grc"; src = pkgs.fishPlugins.grc.src; }
+      {
+        name = "grc";
+        src = pkgs.fishPlugins.grc.src;
+      }
     ];
   };
 
@@ -191,7 +196,7 @@
 
       # language specific plugins
       # typst
-      (minimalPlugin vp.typst-preview-nvim "typst-preview")
+      (configdPlugin vp.typst-preview-nvim ./nvim/plugins/typst-preview.lua)
 
       # formatting & linting
       (configdPlugin vp.conform-nvim ./nvim/plugins/conform.lua)
@@ -212,6 +217,7 @@
     arduino-ide
     thunderbird
     obs-studio
+    mongodb-compass
 
     # random garbage
     neo-cowsay
@@ -221,12 +227,13 @@
     grc
     nix-prefetch-github
     ripgrep
+    hexcurse
     arduino-cli
     python314
     # clangStdenv
     gnumake42
     xclip
-    typst
+    unstable.typst
 
     # language servers
     nil
@@ -234,20 +241,27 @@
     lua-language-server
     # libclang
     clang-tools
-    tinymist
+    unstable.tinymist
     ruby-lsp
     pyright
     arduino-language-server
+    unstable.zls
 
     # formatters/linters
     stylua
     black
+    alejandra
   ];
 
   programs.home-manager.enable = true;
 
-  programs.git.enable = true;
-  
+  programs.git = {
+    enable = true;
+    extraConfig = {
+      http.postBuffer = 157286400;
+    };
+  };
+
   git.common-users = {
     cobyte = {
       github = true;

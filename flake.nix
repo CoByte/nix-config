@@ -22,6 +22,7 @@
     # assorted inputs
     # plugin-nvim-tree.url = "https://github.com/nvim-tree/nvim-tree.lua";
     # plugin-nvim-tree.flake = false;
+    j-link.url = "github:liff/j-link-flake";
 
     plugin-nvim-tree = {
       type = "github";
@@ -36,6 +37,7 @@
     nixpkgs,
     home-manager,
     stylix,
+    j-link,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -69,6 +71,7 @@
       specialArgs = {inherit inputs outputs;};
       modules = [
         stylix.nixosModules.stylix
+        j-link.nixosModule
         ./nixos/configuration.nix
       ];
     };
