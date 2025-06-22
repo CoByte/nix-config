@@ -218,6 +218,7 @@
     thunderbird
     obs-studio
     mongodb-compass
+    libreoffice-qt6
 
     # random garbage
     neo-cowsay

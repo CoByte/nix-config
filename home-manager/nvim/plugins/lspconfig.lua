@@ -39,9 +39,14 @@ end
 
 -- helper for configuring lsp servers
 local function configure_lsp(name, more_config)
-	more_config.on_attach = on_attach
-	more_config.capabilities = capabilities
-	lspconfig[name].setup(more_config)
+	local working = {
+		on_attach = on_attach,
+		capabilities = capabilities,
+	}
+	for k, v in pairs(more_config) do
+		working[k] = v
+	end
+	lspconfig[name].setup(working)
 end
 
 configure_lsp("nil_ls", {})
