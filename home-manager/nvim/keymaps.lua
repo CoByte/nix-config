@@ -22,8 +22,8 @@ keymap.set("n", "<Space>", "<Nop>", { silent = true, remap = false })
 -- keymap.set('n', 'x', '_x', { silent = true, remap = false });
 
 -- buffer cycling
-keymap.set("n", "<S-h>", ":BufferLineCyclePrev<CR>")
-keymap.set("n", "<S-l>", ":BufferLineCycleNext<CR>")
+keymap.set("n", "[b", ":BufferLineCyclePrev<CR>")
+keymap.set("n", "]b", ":BufferLineCycleNext<CR>")
 
 -- luasnip
 keymap.set({ "i", "s" }, "<C-l>", function()
@@ -62,12 +62,7 @@ wk.add({
 
 -- telescope
 wk.add({
-	{ "<leader>f", group = "telescope" },
-	{ "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Buffers" },
-	{ "<leader>fc", "<cmd>Telescope grep_string<CR>", desc = "Grep string" },
-	{ "<leader>ff", "<cmd>Telescope find_files hidden=true no_ignore=true<CR>", desc = "Find files" },
-	{ "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "Help" },
-	{ "<leader>fs", "<cmd>Telescope live_grep<CR>", desc = "Live grep" },
+	{ "<leader>f", "<cmd>Telescope find_files hidden=true no_ignore=true<CR>", desc = "Find files" },
 })
 
 -- REST
@@ -100,6 +95,26 @@ wk.add({
 	{ "<leader>tf", '<cmd>lua require("neotest").run.run(vim.fn.expand("%"))<CR>', desc = "Run file" },
 	{ "<leader>tr", '<cmd>lua require("neotest").run.run()<CR>', desc = "Run nearest" },
 	{ "<leader>tx", '<cmd>lua require("neotest").run.stop()<CR>', desc = "Stop nearest" },
+})
+
+wk.add({
+	{ "<leader>j", group = "jump" },
+})
+
+wk.add({
+	{ "<leader>a", group = "actions" },
+})
+
+wk.add({
+	{ "<leader>l", group = "list" },
+})
+
+wk.add({
+	{ "<leader>s", group = "search" },
+	{ "<leader>sb", "<cmd>Telescope buffers<CR>", desc = "Buffers" },
+	{ "<leader>sh", "<cmd>Telescope help_tags<CR>", desc = "Help" },
+	{ "<leader>sc", "<cmd>Telescope grep_string<CR>", desc = "Grep string" },
+	{ "<leader>ss", "<cmd>Telescope live_grep<CR>", desc = "Live grep" },
 })
 
 -- hidden binds

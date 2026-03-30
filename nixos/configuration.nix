@@ -119,7 +119,7 @@
   # hardware.opengl.enable = true;
   hardware.graphics = {
     enable = true;
-    extraPackages = [ pkgs.mesa.drivers ];
+    extraPackages = [pkgs.mesa.drivers];
   };
 
   virtualisation.docker.rootless = {
@@ -131,9 +131,9 @@
     isNormalUser = true;
     description = "raine";
     # Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-    extraGroups = [ "networkmanager" "wheel" "dialout" ];
+    extraGroups = ["networkmanager" "wheel" "dialout"];
     openssh.authorizedKeys.keys = [
-        # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
+      # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
     ];
   };
 
@@ -142,6 +142,12 @@
     users = {
       raine = import ../home-manager/home.nix;
     };
+  };
+
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+    ];
   };
 
   # No idea why this is here

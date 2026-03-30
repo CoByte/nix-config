@@ -6,9 +6,8 @@ local opt = vim.opt -- for conciseness
 -- random stuff
 opt.showcmd = true -- shows command in the bottom
 opt.laststatus = 2 -- always show status line
--- opt.autowrite = true  -- basically autosave
 opt.cursorline = true -- line at cursor position
--- opt.autoread = true   -- refresh file if it has been modified outside of vim
+opt.autoread = true -- refresh file if it has been modified outside of vim
 
 -- folding
 opt.foldmethod = "expr"
@@ -42,7 +41,7 @@ opt.signcolumn = "yes"
 opt.backspace = "2"
 
 -- clipboard
-opt.clipboard:append("unnamedplus")
+-- opt.clipboard:append("unnamedplus") -- use global clipboard
 
 -- split windows
 opt.splitright = true

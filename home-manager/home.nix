@@ -228,6 +228,7 @@
     obs-studio
     mongodb-compass
     libreoffice-qt6
+    modrinth-app
 
     # random garbage
     neo-cowsay
@@ -256,6 +257,8 @@
     pyright
     arduino-language-server
     unstable.zls
+    ocamlPackages.lsp
+    ocamlPackages.ocaml-lsp
 
     # formatters/linters
     stylua

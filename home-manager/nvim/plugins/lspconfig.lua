@@ -9,18 +9,25 @@ local on_attach = function(client, buffer)
 		{ "<leader>d", vim.diagnostic.open_float, desc = "Diagnose line" },
 	})
 
-	-- LSP
+	-- jumps
 	wk.add({
-		{ "<leader>l", group = "LSP" },
-		{ "<leader>lR", "<cmd>Telescope lsp_references<CR>", desc = "References" },
-		{ "<leader>la", vim.lsp.buf.code_action, desc = "Code action" },
-		{ "<leader>lD", vim.lsp.buf.declaration, desc = "Declaration" },
-		{ "<leader>ld", "<cmd>Telescope lsp_definitions<CR>", desc = "Definition" },
-		{ "<leader>lh", vim.lsp.buf.hover, desc = "Hover" },
+		{ "<leader>jd", "<cmd>Telescope lsp_definitions<CR>", desc = "Definition" },
+		{ "<leader>jD", vim.lsp.buf.declaration, desc = "Declaration" },
+	})
+
+	-- lists
+	wk.add({
+		{ "<leader>lr", "<cmd>Telescope lsp_references<CR>", desc = "References" },
 		{ "<leader>li", "<cmd>Telescope lsp_inplementations<CR>", desc = "Implementations" },
-		{ "<leader>lr", ":IncRename ", desc = "Smart rename" },
-		{ "<leader>ls", vim.lsp.buf.signature_help, desc = "Signature info" },
-		{ "<leader>lt", "<cmd>Telescope lsp_type_definitions<CR>", desc = "Type definition" },
+	})
+
+	-- actions
+	wk.add({
+		{ "<leader>aa", vim.lsp.buf.code_action, desc = "Code action" },
+		{ "<leader>ah", vim.lsp.buf.hover, desc = "Hover" },
+		{ "<leader>ar", ":IncRename ", desc = "Smart rename" },
+		{ "<leader>as", vim.lsp.buf.signature_help, desc = "Signature info" },
+		{ "<leader>at", "<cmd>Telescope lsp_type_definitions<CR>", desc = "Type definition" },
 	})
 
 	vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
@@ -52,6 +59,7 @@ end
 configure_lsp("nil_ls", {})
 configure_lsp("arduino_language_server", {})
 configure_lsp("zls", {})
+configure_lsp("ocamllsp", {})
 
 configure_lsp("rust_analyzer", {
 	settings = {
