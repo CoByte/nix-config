@@ -171,6 +171,9 @@
       }
       (configdPlugin vp.nvim-treesitter-textsubjects ./nvim/plugins/treesitter-textsubjects.lua)
 
+      # snacks
+      vp.snacks-nvim
+
       # fuzzy finding
       vp.telescope-fzf-native-nvim
       vp.telescope-ui-select-nvim
@@ -206,6 +209,8 @@
     extraLuaConfig = ''
       ${builtins.readFile ./nvim/options.lua}
       ${builtins.readFile ./nvim/keymaps.lua}
+
+      ${builtins.readFile ./nvim/plugins/picker.lua}
     '';
   };
 
