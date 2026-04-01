@@ -129,7 +129,6 @@
       (configdPlugin vp.neodev-nvim ./nvim/plugins/neodev.lua)
       (minimalPlugin vp.wrapping-nvim "wrapping")
       (minimalPlugin vp.git-conflict-nvim "git-conflict")
-      (configdPlugin vp.better-escape-nvim ./nvim/plugins/jk.lua)
       vp.vim-sleuth
       vp.vim-exchange
 
