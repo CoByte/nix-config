@@ -1,0 +1,10 @@
+(defsrc j k)
+
+(defchords easy-escape 50
+  (j  ) j
+  (  k) k
+  (j k) esc)
+
+(deflayer base
+  (chord easy-escape j) (chord easy-escape k)
+)

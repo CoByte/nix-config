@@ -70,6 +70,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # includes the virtual keyboard module
+  boot.kernelModules = ["uinput"];
+
   networking.hostName = "envy-2";
   networking.networkmanager.enable = true;
 
@@ -105,6 +108,47 @@
 
   # Enable CUPS to print documents
   services.printing.enable = true;
+
+  # enables the virtual keyboard
+  hardware.uinput.enable = true;
+
+  # -- set up kanata uninput group --
+  # allows kanata to not have to run as root
+
+  # Ensure the uinput group exists
+  users.groups.uinput = {};
+
+  # Set up udev rules for uinput
+  services.udev.extraRules = ''
+    KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
+  '';
+
+  # Add the Kanata service user to necessary groups
+  systemd.services.kanata-internalKeyboard.serviceConfig = {
+    SupplementaryGroups = [
+      "input" # read from keyboard
+      "uinput" # output to virtual keyboard
+    ];
+  };
+
+  # --- ---
+
+  # enable kanata
+  services.kanata = {
+    enable = true;
+    keyboards = {
+      internalKeyboard = {
+        devices = [
+          "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
+        ];
+
+        # passthrough any keys without an explicit map
+        extraDefCfg = "process-unmapped-keys yes";
+
+        config = builtins.readFile ./keymaps.kbd;
+      };
+    };
+  };
 
   # Enable sound with pipewire
   hardware.pulseaudio.enable = false;
