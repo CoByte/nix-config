@@ -7,10 +7,6 @@ vim.g.maplocalleader = " "
 
 local keymap = vim.keymap -- for conciseness
 
--- easy exit out of insert mode
-keymap.set("i", "jk", "<ESC>")
-keymap.set("i", "kj", "<ESC>")
-
 -- nice movement on soft wrapped lines
 keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
@@ -62,7 +58,7 @@ wk.add({
 
 -- telescope
 wk.add({
-	{ "<leader>f", "<cmd>Telescope find_files hidden=true no_ignore=true<CR>", desc = "Find files" },
+	-- { "<leader>f", "<cmd>Telescope find_files hidden=true no_ignore=true<CR>", desc = "Find files" },
 })
 
 -- REST
@@ -110,11 +106,11 @@ wk.add({
 })
 
 wk.add({
-	{ "<leader>s", group = "search" },
-	{ "<leader>sb", "<cmd>Telescope buffers<CR>", desc = "Buffers" },
-	{ "<leader>sh", "<cmd>Telescope help_tags<CR>", desc = "Help" },
-	{ "<leader>sc", "<cmd>Telescope grep_string<CR>", desc = "Grep string" },
-	{ "<leader>ss", "<cmd>Telescope live_grep<CR>", desc = "Live grep" },
+	-- { "<leader>s", group = "search" },
+	-- { "<leader>sb", "<cmd>Telescope buffers<CR>", desc = "Buffers" },
+	-- { "<leader>sh", "<cmd>Telescope help_tags<CR>", desc = "Help" },
+	-- { "<leader>sc", "<cmd>Telescope grep_string<CR>", desc = "Grep string" },
+	-- { "<leader>ss", "<cmd>Telescope live_grep<CR>", desc = "Live grep" },
 })
 
 -- hidden binds

@@ -170,13 +170,12 @@
       }
       (configdPlugin vp.nvim-treesitter-textsubjects ./nvim/plugins/treesitter-textsubjects.lua)
 
-      # snacks
-      vp.snacks-nvim
-
       # fuzzy finding
-      vp.telescope-fzf-native-nvim
-      vp.telescope-ui-select-nvim
-      (configdPlugin vp.telescope-nvim ./nvim/plugins/telescope.lua)
+      (configdPlugin vp.mini-pick ./nvim/plugins/mini-pick.lua)
+
+      # vp.telescope-fzf-native-nvim
+      # vp.telescope-ui-select-nvim
+      # (configdPlugin vp.telescope-nvim ./nvim/plugins/telescope.lua)
 
       # tabs
       vp.vim-tmux-navigator
@@ -208,8 +207,6 @@
     extraLuaConfig = ''
       ${builtins.readFile ./nvim/options.lua}
       ${builtins.readFile ./nvim/keymaps.lua}
-
-      ${builtins.readFile ./nvim/plugins/picker.lua}
     '';
   };
 
