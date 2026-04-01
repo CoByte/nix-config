@@ -172,6 +172,7 @@
 
       # fuzzy finding
       (configdPlugin vp.mini-pick ./nvim/plugins/mini-pick.lua)
+      (configdPlugin vp.mini-extra ./nvim/plugins/mini-extra.lua)
 
       # vp.telescope-fzf-native-nvim
       # vp.telescope-ui-select-nvim
