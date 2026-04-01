@@ -56,11 +56,6 @@ wk.add({
 	{ "<leader>mh", "<cmd>HexToggle<cr>" },
 })
 
--- telescope
-wk.add({
-	-- { "<leader>f", "<cmd>Telescope find_files hidden=true no_ignore=true<CR>", desc = "Find files" },
-})
-
 -- REST
 -- wk.add({
 -- 	{ "<leader>r", group = "REST" },
@@ -106,11 +101,7 @@ wk.add({
 })
 
 wk.add({
-	-- { "<leader>s", group = "search" },
-	-- { "<leader>sb", "<cmd>Telescope buffers<CR>", desc = "Buffers" },
-	-- { "<leader>sh", "<cmd>Telescope help_tags<CR>", desc = "Help" },
-	-- { "<leader>sc", "<cmd>Telescope grep_string<CR>", desc = "Grep string" },
-	-- { "<leader>ss", "<cmd>Telescope live_grep<CR>", desc = "Live grep" },
+	{ "<leader>F", group = "pick" },
 })
 
 -- hidden binds
