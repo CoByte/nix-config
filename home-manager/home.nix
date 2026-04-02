@@ -120,7 +120,7 @@
       vp.plenary-nvim
 
       # useful
-      (minimalPlugin vp.which-key-nvim "which-key")
+      (configdPlugin vp.which-key-nvim ./nvim/plugins/which-key.lua)
       (minimalPlugin vp.nvim-surround "nvim-surround")
       (minimalPlugin vp.comment-nvim "Comment")
       (minimalPlugin vp.inc-rename-nvim "inc_rename")

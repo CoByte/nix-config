@@ -6,27 +6,27 @@ local on_attach = function(client, buffer)
 	-- this is probably in scope by now...
 	local pickers = _G["MiniExtra"].pickers
 
-	local function pick_lsp(source)
+	local function pick_lsp(scope)
 		return function()
-			pickers.lsp({ source = source })
+			pickers.lsp({ scope = scope })
 		end
 	end
 
 	wk.add({
-		{ "<leader>D", pickers.diagnostics, desc = "Diagnose file" },
-		{ "<leader>d", vim.diagnostic.open_float, desc = "Diagnose line" },
+		{ "<leader>D", pickers.diagnostics, desc = "Diagnose file", buffer = buffer },
+		{ "<leader>d", vim.diagnostic.open_float, desc = "Diagnose line", buffer = buffer },
 	})
 
 	-- jumps
 	wk.add({
-		{ "<leader>jd", vim.lsp.buf.definition, desc = "Definition" },
-		{ "<leader>jD", vim.lsp.buf.declaration, desc = "Declaration" },
+		{ "<leader>jd", vim.lsp.buf.definition, desc = "Definition", buffer = buffer },
+		{ "<leader>jD", vim.lsp.buf.declaration, desc = "Declaration", buffer = buffer },
 	})
 
 	-- lists
 	wk.add({
-		{ "<leader>lr", pick_lsp("references"), desc = "References" },
-		{ "<leader>li", pick_lsp("implementation"), desc = "Implementations" },
+		{ "<leader>lr", pick_lsp("references"), desc = "References", buffer = buffer },
+		{ "<leader>li", pick_lsp("implementation"), desc = "Implementations", buffer = buffer },
 	})
 
 	-- track cmd line and run `:wa` after an IncRename
@@ -54,11 +54,11 @@ local on_attach = function(client, buffer)
 
 	-- actions
 	wk.add({
-		{ "<leader>aa", vim.lsp.buf.code_action, desc = "Code action" },
-		{ "<leader>ah", vim.lsp.buf.hover, desc = "Hover" },
-		{ "<leader>ar", ":IncRename ", desc = "Rename" },
-		{ "<leader>as", vim.lsp.buf.signature_help, desc = "Signature info" },
-		{ "<leader>at", vim.lsp.buf.type_definition, desc = "Type definition" },
+		{ "<leader>aa", vim.lsp.buf.code_action, desc = "Code action", buffer = buffer },
+		{ "<leader>ah", vim.lsp.buf.hover, desc = "Hover", buffer = buffer },
+		{ "<leader>ar", ":IncRename ", desc = "Rename", buffer = buffer },
+		{ "<leader>as", vim.lsp.buf.signature_help, desc = "Signature info", buffer = buffer },
+		{ "<leader>at", vim.lsp.buf.type_definition, desc = "Type definition", buffer = buffer },
 	})
 
 	vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
@@ -160,10 +160,10 @@ configure_lsp("tinymist", {
 	on_attach = function(client, buffer)
 		on_attach(client, buffer)
 		wk.add({
-			{ "<leader>p", group = "Typst Preview" },
-			{ "<leader>pp", "<cmd>TypstPreviewToggle<CR>", desc = "Toggle preview" },
-			{ "<leader>pc", "<cmd>TypstPreviewFollowCursorToggle<CR>", desc = "Toggle cursor follow" },
-			{ "<leader>pj", "<cmd>TypstPreviewSyncCursor<CR>", desc = "Sync cursor" },
+			{ "<leader>p", group = "Typst Preview", buffer = buffer },
+			{ "<leader>pp", "<cmd>TypstPreviewToggle<CR>", desc = "Toggle preview", buffer = buffer },
+			{ "<leader>pc", "<cmd>TypstPreviewFollowCursorToggle<CR>", desc = "Toggle cursor follow", buffer = buffer },
+			{ "<leader>pj", "<cmd>TypstPreviewSyncCursor<CR>", desc = "Sync cursor", buffer = buffer },
 		})
 	end,
 	root_dir = lspconfig.util.root_pattern("main.typ", "*.typ"),

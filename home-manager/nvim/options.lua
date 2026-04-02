@@ -49,6 +49,8 @@ opt.splitbelow = true
 
 opt.inccommand = "split"
 
+opt.smartcase = true
+
 -- turn off keybind timeout
 -- opt.timeout = false
 -- opt.ttimeout = false
