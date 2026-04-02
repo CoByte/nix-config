@@ -13,7 +13,7 @@ local on_attach = function(client, buffer)
 	end
 
 	wk.add({
-		{ "<leader>D", pickers.diagnostics, desc = "Diagnose file", buffer = buffer },
+		{ "<leader>D", pickers.diagnostic, desc = "Diagnose file", buffer = buffer },
 		{ "<leader>d", vim.diagnostic.open_float, desc = "Diagnose line", buffer = buffer },
 	})
 
