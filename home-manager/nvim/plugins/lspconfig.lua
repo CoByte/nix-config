@@ -3,36 +3,66 @@ local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local wk = require("which-key")
 
 local on_attach = function(client, buffer)
-	-- top level binds
+	-- this is probably in scope by now...
+	local pickers = _G["MiniExtra"].pickers
+
+	local function pick_lsp(source)
+		return function()
+			pickers.lsp({ source = source })
+		end
+	end
+
 	wk.add({
-		{ "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", desc = "Diagnose file" },
+		{ "<leader>D", pickers.diagnostics, desc = "Diagnose file" },
 		{ "<leader>d", vim.diagnostic.open_float, desc = "Diagnose line" },
 	})
 
 	-- jumps
 	wk.add({
-		{ "<leader>jd", "<cmd>Telescope lsp_definitions<CR>", desc = "Definition" },
+		{ "<leader>jd", vim.lsp.buf.definition, desc = "Definition" },
 		{ "<leader>jD", vim.lsp.buf.declaration, desc = "Declaration" },
 	})
 
 	-- lists
 	wk.add({
-		{ "<leader>lr", "<cmd>Telescope lsp_references<CR>", desc = "References" },
-		{ "<leader>li", "<cmd>Telescope lsp_inplementations<CR>", desc = "Implementations" },
+		{ "<leader>lr", pick_lsp("references"), desc = "References" },
+		{ "<leader>li", pick_lsp("implementation"), desc = "Implementations" },
 	})
+
+	-- track cmd line and run `:wa` after an IncRename
+	do
+		local last_cmd = ""
+
+		vim.api.nvim_create_autocmd("CmdlineChanged", {
+			pattern = ":",
+			callback = function()
+				last_cmd = vim.fn.getcmdline()
+			end,
+		})
+
+		vim.api.nvim_create_autocmd("CmdlineLeave", {
+			pattern = ":",
+			callback = function()
+				if last_cmd:match("^IncRename") then
+					vim.schedule(function()
+						vim.cmd("wa")
+					end)
+				end
+			end,
+		})
+	end
 
 	-- actions
 	wk.add({
 		{ "<leader>aa", vim.lsp.buf.code_action, desc = "Code action" },
 		{ "<leader>ah", vim.lsp.buf.hover, desc = "Hover" },
-		{ "<leader>ar", ":IncRename ", desc = "Smart rename" },
+		{ "<leader>ar", ":IncRename ", desc = "Rename" },
 		{ "<leader>as", vim.lsp.buf.signature_help, desc = "Signature info" },
-		{ "<leader>at", "<cmd>Telescope lsp_type_definitions<CR>", desc = "Type definition" },
+		{ "<leader>at", vim.lsp.buf.type_definition, desc = "Type definition" },
 	})
 
 	vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 	vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-	vim.keymap.set("n", "K", vim.lsp.buf.hover)
 end
 
 -- used to enable autocompletion

@@ -47,6 +47,8 @@ opt.backspace = "2"
 opt.splitright = true
 opt.splitbelow = true
 
+opt.inccommand = "split"
+
 -- turn off keybind timeout
 -- opt.timeout = false
 -- opt.ttimeout = false
