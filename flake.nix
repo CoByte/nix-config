@@ -20,8 +20,6 @@
     };
 
     # assorted inputs
-    # plugin-nvim-tree.url = "https://github.com/nvim-tree/nvim-tree.lua";
-    # plugin-nvim-tree.flake = false;
     j-link.url = "github:liff/j-link-flake";
 
     plugin-nvim-tree = {
@@ -41,10 +39,12 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
+
     # Supported systems for your flake packages, shell, etc.
     systems = [
       "x86_64-linux"
     ];
+
     # This is a function that generates an attribute by calling a function you
     # pass to it, with each system as an argument
     forAllSystems = nixpkgs.lib.genAttrs systems;
@@ -58,21 +58,33 @@
 
     # Your custom packages and modifications, exported as overlays
     overlays = import ./overlays {inherit inputs;};
+
     # Reusable nixos modules you might want to export
     # These are usually stuff you would upstream into nixpkgs
     nixosModules = import ./modules/nixos;
+
     # Reusable home-manager modules you might want to export
     # These are usually stuff you would upstream into home-manager
     homeManagerModules = import ./modules/home-manager;
 
     # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#your-hostname'
+    # Available through 'nixos-rebuild --flake .#envy-2'
     nixosConfigurations.envy-2 = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs outputs;};
       modules = [
         stylix.nixosModules.stylix
         j-link.nixosModule
         ./nixos/configuration.nix
+      ];
+    };
+
+    # Home manager configuration entrypoint
+    # Available through 'home-manage switch --flake .#raine'
+    homeConfigurations."raine" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      extraSpecialArgs = {inherit inputs outputs;};
+      modules = [
+        ./home-manager/home.nix
       ];
     };
   };

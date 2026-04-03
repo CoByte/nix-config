@@ -22,7 +22,7 @@
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
 
-    inputs.home-manager.nixosModules.home-manager
+    # inputs.home-manager.nixosModules.home-manager
   ];
 
   nixpkgs = {
@@ -181,12 +181,12 @@
     ];
   };
 
-  home-manager = {
-    extraSpecialArgs = {inherit inputs outputs;};
-    users = {
-      raine = import ../home-manager/home.nix;
-    };
-  };
+  # home-manager = {
+  #   extraSpecialArgs = {inherit inputs outputs;};
+  #   users = {
+  #     raine = import ../home-manager/home.nix;
+  #   };
+  # };
 
   programs.nix-ld = {
     enable = true;
