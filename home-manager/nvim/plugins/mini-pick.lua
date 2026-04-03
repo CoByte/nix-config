@@ -9,6 +9,10 @@ minipick.setup({
 		move_down = "<C-j>",
 		move_up = "<C-k>",
 	},
+
+	options = {
+		content_from_bottom = true,
+	},
 })
 
 local pick = _G["MiniPick"]
