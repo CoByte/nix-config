@@ -50,6 +50,7 @@
 
   home.sessionVariables = {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
+    NIXOS_CONFIG = "\${HOME}/nixos";
   };
 
   stylix = {enable = true;} // (import ../shared/stylix.nix {inherit pkgs;});
@@ -82,15 +83,28 @@
     historyLimit = 100000;
     shortcut = "a";
 
-    plugins = with pkgs; [
-      tmuxPlugins.better-mouse-mode
-      tmuxPlugins.resurrect
-      tmuxPlugins.continuum
-    ];
-
     extraConfig = ''
       ${builtins.readFile ./.tmux.conf}
     '';
+
+    plugins = with pkgs; [
+      tmuxPlugins.better-mouse-mode
+      {
+        plugin = tmuxPlugins.resurrect;
+        extraConfig = ''
+          set -g @resurrect-strategy-vim 'session'
+          set -g @resurrect-strategy-nvim 'session'
+          set -g @resurrect-capture-pane-contents 'on'
+        '';
+      }
+      {
+        plugin = tmuxPlugins.continuum;
+        extraConfig = ''
+          set -g @continuum-restore 'on'
+          set -g @continuum-save-interval '10'
+        '';
+      }
+    ];
   };
 
   programs.neovim = let
