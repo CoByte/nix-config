@@ -52,6 +52,8 @@
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
   };
 
+  stylix = {enable = true;} // (import ../shared/stylix.nix {inherit pkgs;});
+
   programs.kitty = {
     enable = true;
     shellIntegration.enableFishIntegration = true;

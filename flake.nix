@@ -84,6 +84,7 @@
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       extraSpecialArgs = {inherit inputs outputs;};
       modules = [
+        stylix.homeManagerModules.stylix
         ./home-manager/home.nix
       ];
     };

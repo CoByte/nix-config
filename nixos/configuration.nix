@@ -235,19 +235,7 @@
     texlivePackages.fontawesome
   ];
 
-  # stylix config
-  stylix = {
-    enable = true;
-    image = ../assets/wallpaper.png;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
-
-    fonts = {
-      monospace = {
-        package = pkgs.jetbrains-mono;
-        name = "Jetbrains Mono";
-      };
-    };
-  };
+  stylix = {enable = true;} // (import ../shared/stylix.nix {inherit pkgs;});
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
