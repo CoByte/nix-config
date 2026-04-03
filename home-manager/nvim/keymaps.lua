@@ -8,8 +8,8 @@ vim.g.maplocalleader = " "
 local keymap = vim.keymap -- for conciseness
 
 -- nice movement on soft wrapped lines
-keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
-keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
+keymap.set({ "n", "v" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
+keymap.set({ "n", "v" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
 -- ensures space doesn't do anything in normal mode on its own
 keymap.set("n", "<Space>", "<Nop>", { silent = true, remap = false })
