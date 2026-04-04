@@ -17,11 +17,21 @@ minipick.setup({
 
 local pick = _G["MiniPick"]
 
+local function hidden_files()
+	pick.builtin.cli({
+		command = { "rg", "--files", "--hidden", "--glob", "!.git" },
+	}, {
+		source = {
+			name = "Files",
+		},
+	})
+end
+
 wk.add({
-	{ "<leader>f", pick.builtin.files, desc = "Files" },
+	{ "<leader>f", hidden_files, desc = "Files" },
 })
 
 wk.add({
-	{ "<leader>Fb", pick.builtin.buffers, desc = "Buffers" },
-	{ "<leader>Fs", pick.builtin.grep_live, desc = "Live" },
+	{ "<leader>gb", pick.builtin.buffers, desc = "Buffers" },
+	{ "<leader>gg", pick.builtin.grep_live, desc = "Live" },
 })

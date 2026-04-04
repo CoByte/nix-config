@@ -101,7 +101,7 @@ wk.add({
 })
 
 wk.add({
-	{ "<leader>F", group = "pick" },
+	{ "<leader>g", group = "pick" },
 })
 
 -- hidden binds

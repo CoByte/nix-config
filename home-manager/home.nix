@@ -4,6 +4,7 @@
   lib,
   config,
   pkgs,
+  pkgs-unstable,
   ...
 }: {
   imports = [
@@ -76,6 +77,8 @@
     ];
   };
 
+  xdg.configFile."tmux/which-key.yaml".source = ./tmux/which-key.yaml;
+
   programs.tmux = {
     enable = true;
     shell = "${pkgs.fish}/bin/fish";
@@ -84,11 +87,17 @@
     shortcut = "a";
 
     extraConfig = ''
-      ${builtins.readFile ./.tmux.conf}
+      ${builtins.readFile ./tmux/tmux.conf}
     '';
 
     plugins = with pkgs; [
       tmuxPlugins.better-mouse-mode
+      {
+        plugin = pkgs-unstable.tmuxPlugins.tmux-which-key;
+        extraConfig = ''
+          set -g @which-key-config "$HOME/.config/tmux/which-key.yaml"
+        '';
+      }
       {
         plugin = tmuxPlugins.resurrect;
         extraConfig = ''
