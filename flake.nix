@@ -33,6 +33,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-unstable,
     home-manager,
     stylix,
     j-link,
@@ -82,7 +83,10 @@
     # Available through 'home-manage switch --flake .#raine'
     homeConfigurations."raine" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      extraSpecialArgs = {inherit inputs outputs;};
+      extraSpecialArgs = {
+        inherit inputs outputs;
+        pkgs-unstable = nixpkgs-unstable.legacyPackages.x86_64-linux;
+      };
       modules = [
         stylix.homeManagerModules.stylix
         ./home-manager/home.nix

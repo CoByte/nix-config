@@ -149,7 +149,6 @@
       (minimalPlugin vp.nvim-surround "nvim-surround")
       (minimalPlugin vp.comment-nvim "Comment")
       (minimalPlugin vp.inc-rename-nvim "inc_rename")
-      (configdPlugin vp.nvim-autopairs ./nvim/plugins/autopairs.lua)
       (minimalPlugin vp.gitsigns-nvim "gitsigns")
       (configdPlugin vp.neodev-nvim ./nvim/plugins/neodev.lua)
       (minimalPlugin vp.wrapping-nvim "wrapping")
@@ -257,6 +256,7 @@
     mongodb-compass
     libreoffice-qt6
     modrinth-app
+    calibre
 
     # random garbage
     neo-cowsay
