@@ -223,7 +223,7 @@
 
       # language specific plugins
       # typst
-      (configdPlugin vp.typst-preview-nvim ./nvim/plugins/typst-preview.lua)
+      (configdPlugin pkgs-unstable.vimPlugins.typst-preview-nvim ./nvim/plugins/typst-preview.lua)
 
       # formatting & linting
       (configdPlugin vp.conform-nvim ./nvim/plugins/conform.lua)
