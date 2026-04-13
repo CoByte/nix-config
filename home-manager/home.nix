@@ -29,17 +29,6 @@
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
-
-      (final: prev: {
-        vimPlugins =
-          prev.vimPlugins
-          // {
-            own-nvim-tree = prev.vimUtils.buildVimPlugin {
-              name = "nvim-tree";
-              src = inputs.plugin-nvim-tree;
-            };
-          };
-      })
     ];
     config = {
       allowUnfree = true;
@@ -198,13 +187,11 @@
       (configdPlugin vp.mini-pick ./nvim/plugins/mini-pick.lua)
       (configdPlugin vp.mini-extra ./nvim/plugins/mini-extra.lua)
 
-      # vp.telescope-fzf-native-nvim
-      # vp.telescope-ui-select-nvim
-      # (configdPlugin vp.telescope-nvim ./nvim/plugins/telescope.lua)
+      # file tree
+      (configdPlugin vp.mini-files ./nvim/plugins/mini-files.lua)
 
       # tabs
       vp.vim-tmux-navigator
-      (configdPlugin vp.own-nvim-tree ./nvim/plugins/nvim-tree.lua)
 
       # autocompletion
       vp.cmp-buffer

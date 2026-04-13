@@ -37,7 +37,6 @@ end, { silent = true })
 -- top level binds
 wk.add({
 	{ "<leader>h", ":nohlsearch<CR>", desc = "Clear highlight" },
-	{ "<leader>e", ":NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
 })
 
 vim.api.nvim_create_user_command("ToggleCC", function(opts)

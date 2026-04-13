@@ -21,13 +21,6 @@
 
     # assorted inputs
     j-link.url = "github:liff/j-link-flake";
-
-    plugin-nvim-tree = {
-      type = "github";
-      owner = "nvim-tree";
-      repo = "nvim-tree.lua";
-      flake = false;
-    };
   };
 
   outputs = {
