@@ -268,11 +268,12 @@
     ripgrep
     hexcurse
     arduino-cli
-    python314
     # clangStdenv
     gnumake42
     xclip
     unstable.typst
+    zip
+    unzip
 
     # language servers
     nil

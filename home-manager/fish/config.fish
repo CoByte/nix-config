@@ -2,6 +2,7 @@ set fish_greeting # disable greeting
 
 # abbreviations
 abbr --add nsf "nix-shell --command fish"
+abbr --add ndf "nix develop --command fish"
 abbr --add rehome "home-manager switch --flake $NIXOS_CONFIG#raine"
 abbr --add rebuild "sudo nixos-rebuild switch --flake $NIXOS_CONFIG#envy-2"
 abbr --add cdgr "cd (git rev-parse --show-toplevel)"
