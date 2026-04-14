@@ -3,6 +3,8 @@ local wk = require("which-key")
 
 files.setup({
 	mappings = {
+		go_in_plus = "l",
+		go_in = "L",
 		close = "<Esc>",
 	},
 })
