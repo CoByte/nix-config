@@ -90,6 +90,7 @@ configure_lsp("nil_ls", {})
 configure_lsp("arduino_language_server", {})
 configure_lsp("zls", {})
 configure_lsp("ocamllsp", {})
+configure_lsp("basedpyright", {})
 
 configure_lsp("rust_analyzer", {
 	settings = {

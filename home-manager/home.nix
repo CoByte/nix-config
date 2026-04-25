@@ -264,17 +264,17 @@
 
     # language servers
     nil
-    rust-analyzer
-    lua-language-server
+    # rust-analyzer
+    # lua-language-server
     # libclang
-    clang-tools
+    # clang-tools
     unstable.tinymist
-    ruby-lsp
-    pyright
-    arduino-language-server
-    unstable.zls
-    ocamlPackages.lsp
-    ocamlPackages.ocaml-lsp
+    # ruby-lsp
+    # pyright
+    # arduino-language-server
+    # unstable.zls
+    # ocamlPackages.lsp
+    # ocamlPackages.ocaml-lsp
 
     # formatters/linters
     stylua
