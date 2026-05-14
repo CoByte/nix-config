@@ -91,11 +91,13 @@ configure_lsp("arduino_language_server", {})
 configure_lsp("zls", {})
 configure_lsp("ocamllsp", {})
 configure_lsp("basedpyright", {})
+configure_lsp("hls", {})
 
 configure_lsp("rust_analyzer", {
 	settings = {
 		["rust-analyzer"] = {
-			checkOnSave = {
+			checkOnSave = true,
+			check = {
 				command = "clippy",
 				allTargets = false,
 			},
