@@ -297,12 +297,14 @@
       user.name = "cobyte";
       user.email = "32520644+CoByte@users.noreply.github.com";
       core.sshCommand = "ssh -i ~/.ssh/id_rsa";
+      init.defaultBranch = "main";
     };
     rainewheary = {
       github = true;
       user.name = "rwheary";
       user.email = "130535726+rainewheary@users.noreply.github.com";
       core.sshCommand = "ssh -i ~/.ssh/id_rsa_OSU";
+      init.defaultBranch = "main";
     };
   };
 

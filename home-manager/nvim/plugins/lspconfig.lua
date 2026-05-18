@@ -96,11 +96,11 @@ configure_lsp("hls", {})
 configure_lsp("rust_analyzer", {
 	settings = {
 		["rust-analyzer"] = {
-			checkOnSave = true,
-			check = {
-				command = "clippy",
-				allTargets = false,
+			cachePriming = {
+				enable = true,
+				numThreads = 0,
 			},
+			checkOnSave = true,
 		},
 	},
 })
