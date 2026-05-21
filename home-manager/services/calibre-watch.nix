@@ -4,7 +4,8 @@
   config,
   ...
 }: let
-  target = "/home/raine/Documents/Books/";
+  target = "/home/raine/Documents/Books";
+  library = "/home/raine/Calibre";
 in {
   # watches the synced ebook folder and automatically loads it into calibre
   systemd.user.paths.calibre-watch = {
@@ -26,7 +27,7 @@ in {
     Service = {
       Type = "oneshot";
       ExecStartPre = "${pkgs.coreutils}/bin/sleep 5";
-      ExecStart = "${pkgs.calibre}/bin/calibredb add ${target} --library-path=${target}";
+      ExecStart = "${pkgs.calibre}/bin/calibredb add ${target} --library-path=${library}";
     };
   };
 }
