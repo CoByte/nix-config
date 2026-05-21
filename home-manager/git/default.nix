@@ -1,3 +1,6 @@
 {
-  imports = [ ./generate-git-users.nix ./extensions.nix ];
+  imports = [
+    ./generate-git-users.nix
+    ./extensions.nix
+  ];
 }
