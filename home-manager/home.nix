@@ -45,6 +45,10 @@
 
   stylix = {enable = true;} // (import ../shared/stylix.nix {inherit pkgs;});
 
+  services.syncthing = {
+    enable = true;
+  };
+
   programs.kitty = {
     enable = true;
     shellIntegration.enableFishIntegration = true;
