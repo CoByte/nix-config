@@ -106,6 +106,11 @@
     variant = "";
   };
 
+  services.syncthing = {
+    enable = true;
+    openDefaultPorts = true;
+  };
+
   # Enable CUPS to print documents
   services.printing.enable = true;
 
@@ -130,8 +135,6 @@
       "uinput" # output to virtual keyboard
     ];
   };
-
-  # --- ---
 
   # enable kanata
   services.kanata = {
