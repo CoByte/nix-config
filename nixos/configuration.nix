@@ -76,6 +76,15 @@
   networking.hostName = "envy-2";
   networking.networkmanager.enable = true;
 
+  # this is apparently better?
+  networking.nftables.enable = true;
+  networking.firewall = {
+    enable = true;
+    # Allow tailscale traffic
+    trustedInterfaces = [config.services.tailscale.interfaceName];
+    allowedUDPPorts = [config.services.tailscale.port];
+  };
+
   time.timeZone = "America/Los_Angeles";
 
   # Select internationalisation properties
@@ -106,10 +115,16 @@
     variant = "";
   };
 
-  services.syncthing = {
-    enable = true;
-    openDefaultPorts = true;
-  };
+  services.tailscale.enable = true;
+
+  # use nftables w/ tailscale
+  systemd.services.tailscaled.serviceConfig.Environment = [
+    "TS_DEBUG_FIREWALL_MODE=nftables"
+  ];
+
+  # Prevent systemd from waiting until network is online (makes tailscale faster?)
+  systemd.network.wait-online.enable = false;
+  boot.initrd.systemd.network.wait-online.enable = false;
 
   # Enable CUPS to print documents
   services.printing.enable = true;
