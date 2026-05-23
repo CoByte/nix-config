@@ -15,6 +15,6 @@ set -x FZF_ALT_C_OPTS '--walker-skip .git,.steam,.local'
 # launch tmux on startup
 if type -q tmux
     if not test -n "$TMUX"
-        tmux attach-session -t default; or tmux new-session -s default
+        tmux attach-session; or tmux new-session -s default
     end
 end
