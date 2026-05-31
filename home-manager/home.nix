@@ -247,7 +247,7 @@
     obs-studio
     mongodb-compass
     libreoffice-qt6
-    modrinth-app
+    # modrinth-app
     calibre
 
     # random garbage

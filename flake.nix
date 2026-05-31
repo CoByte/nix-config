@@ -76,7 +76,7 @@
         pkgs-unstable = nixpkgs-unstable.legacyPackages.x86_64-linux;
       };
       modules = [
-        stylix.homeManagerModules.stylix
+        stylix.homeModules.stylix
         ./home-manager/home.nix
       ];
     };
