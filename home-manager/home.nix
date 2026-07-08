@@ -248,6 +248,7 @@
     mongodb-compass
     libreoffice-qt6
     # modrinth-app
+    prismlauncher
     calibre
 
     # random garbage
