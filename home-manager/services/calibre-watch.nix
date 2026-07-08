@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  target = "/home/raine/Documents/Books";
+  target = "/home/raine/Documents/books";
   library = "/home/raine/Calibre";
 in {
   # watches the synced ebook folder and automatically loads it into calibre
