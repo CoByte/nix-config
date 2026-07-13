@@ -181,7 +181,10 @@
   # hardware.opengl.enable = true;
   hardware.graphics = {
     enable = true;
-    extraPackages = [pkgs.mesa.drivers];
+    extraPackages = [
+      pkgs.mesa.drivers
+      pkgs.intel-media-driver
+    ];
   };
 
   virtualisation.docker.rootless = {
